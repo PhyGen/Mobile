@@ -19,20 +19,26 @@ dependencies:
   firebase_auth: ^4.16.0
   google_sign_in: ^6.1.4
 
-  # ✅ State management (nếu cần)
+  # ✅ State management
   provider: ^6.1.2
 
-  # ✅ Hiển thị thông báo ngắn (toast)
-  fluttertoast: ^8.2.8
+  # ✅ Hiển thị thông báo ngắn
+  fluttertoast: ^8.2.12
 
-  # ✅ Lưu token (JWT) local
+  # ✅ Lưu token local
   shared_preferences: ^2.2.2
+
+  # ✅ Đa ngôn ngữ
+  flutter_localizations:
+    sdk: flutter
+  intl: 0.20.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
   flutter_launcher_icons: ^0.13.1
+  build_runner: ^2.4.9
 
 flutter_icons:
   android: true
@@ -49,3 +55,8 @@ flutter:
     - assets/icons/scan-text.png
     - assets/icons/phygen-icon.png
     - assets/icons/google-icon.png
+
+  # ✅ Cấu hình generate localization từ ARB
+  generate: true
+  # Đây là cần thiết từ Flutter 3.10 trở lên
+  # Bạn không cần phải cài `flutter_gen` thủ công vì Flutter sẽ generate file từ l10n.yaml

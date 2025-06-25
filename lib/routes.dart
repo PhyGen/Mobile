@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'signin.dart';
 import 'signup.dart';
-import 'mainscreen.dart'; // nếu có trang home
+import 'mainscreen.dart';
 
 class AppRoutes {
   static const String signIn = '/signin';
@@ -13,7 +13,7 @@ class AppRoutes {
     return {
       signIn: (context) => const SignInPage(),
       signUp: (context) => const SignUpPage(),
-      //home: (context) => const HomePage(), // nếu bạn có trang Home
+      home: (context) => const MainScreen(), // ✅ Dùng MainScreen ở đây
     };
   }
 }

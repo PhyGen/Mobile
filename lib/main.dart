@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'l10n/app_localizations.dart'; // ✅ đúng nếu file nằm ở lib/l10n
 import 'firebase_options.dart';
 import 'routes.dart';
 
@@ -23,6 +24,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      localizationsDelegates: AppLocalizations.localizationsDelegates, // ✅ Đa ngôn ngữ
+      supportedLocales: AppLocalizations.supportedLocales,
       initialRoute: AppRoutes.signIn,
       routes: AppRoutes.routes,
     );

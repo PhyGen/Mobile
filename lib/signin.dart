@@ -31,7 +31,7 @@ class _SignInPageState extends State<SignInPage> {
 
     try {
       final response = await http.post(
-        Uri.parse("http://your-ip:your-port/Login"),
+        Uri.parse("http://192.168.1.6:5000/Login"),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
           "email": email,
@@ -62,7 +62,7 @@ class _SignInPageState extends State<SignInPage> {
         Fluttertoast.showToast(msg: "Google Sign-In: ${googleUser.email}");
 
         final response = await http.post(
-          Uri.parse("http://your-ip:your-port/api/login/google"),
+          Uri.parse("http://192.168.1.6:5000/api/login/google"),
           headers: {'Content-Type': 'application/json'},
           body: json.encode({
             "gmail": googleUser.email,
