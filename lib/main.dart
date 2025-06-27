@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'l10n/app_localizations.dart'; // ✅ đúng nếu file nằm ở lib/l10n
+import 'l10n/app_localizations.dart';
 import 'firebase_options.dart';
 import 'routes.dart';
 

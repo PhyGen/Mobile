@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'l10n/app_localizations.dart';
 
 class CreateTypeSelect extends StatelessWidget {
@@ -35,13 +34,13 @@ class CreateTypeSelect extends StatelessWidget {
                 children: [
                   _buildSelectCard(
                     context: context,
-                    iconPath: 'assets/icons/person-question-mark-svgrepo-com.svg',
+                    iconPath: 'assets/icons/person-question-mark.png',
                     label: t.question,
                     onTap: () => onSelect("question"),
                   ),
                   _buildSelectCard(
                     context: context,
-                    iconPath: 'assets/icons/exam-svgrepo-com.svg',
+                    iconPath: 'assets/icons/exam.png',
                     label: t.exam,
                     onTap: () => onSelect("exam"),
                   ),
@@ -74,7 +73,7 @@ class CreateTypeSelect extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SvgPicture.asset(iconPath, width: 64, height: 64),
+            Image.asset(iconPath, width: 64, height: 64),
             const SizedBox(height: 12),
             Text(
               label,
