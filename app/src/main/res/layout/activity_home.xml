@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCreateExam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tạo đề thi"
+        android:backgroundTint="#4A3FF7"
+        app:cornerRadius="24dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnMyExam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đề thi của tôi"
+        android:backgroundTint="#4A3FF7"
+        app:cornerRadius="24dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRecent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gần đây"
+        android:backgroundTint="#4A3FF7"
+        app:cornerRadius="24dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnViewChapters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xem chương"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#4A3FF7"
+        app:cornerRadius="24dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnViewProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xem hồ sơ"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#4A3FF7"
+        app:cornerRadius="24dp"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnViewExams"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xem đề thi"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#4A3FF7"
+        app:cornerRadius="24dp"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnViewQuestions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xem câu hỏi"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#4A3FF7"
+        app:cornerRadius="24dp"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnViewSemesters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xem học kỳ"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#4A3FF7"
+        app:cornerRadius="24dp" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnViewGrades"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xem khối lớp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#4A3FF7"
+        app:cornerRadius="24dp" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnViewSolutions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xem lời giải"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#4A3FF7"
+        app:cornerRadius="24dp"/>
+
+</LinearLayout>

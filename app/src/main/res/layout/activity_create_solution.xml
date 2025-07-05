@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/edtQuestionId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ID câu hỏi"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/edtContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nội dung lời giải" />
+
+    <EditText
+        android:id="@+id/edtExplanation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Giải thích" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSubmitSolution"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tạo lời giải"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#4A3FF7"
+        app:cornerRadius="24dp"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

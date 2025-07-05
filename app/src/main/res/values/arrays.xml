@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="lesson_options">
+        <item>Bài 1: Cơ học</item>
+        <item>Bài 2: Nhiệt học</item>
+        <item>Bài 3: Điện học</item>
+        <item>Bài 4: Quang học</item>
+        <item>Bài 5: Vật lý hạt nhân</item>
+    </string-array>
+
+    <string-array name="exam_type_options">
+        <item>Kiểm tra 15 phút</item>
+        <item>Kiểm tra 45 phút</item>
+        <item>Kiểm tra học kỳ</item>
+        <item>Thi cuối kỳ</item>
+    </string-array>
+</resources> 
