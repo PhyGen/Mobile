@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Quyền truy cập Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Quyền gửi thông báo (nếu targetSdk >= 33) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +19,7 @@
         android:theme="@style/Theme.PhyGen_Java"
         tools:targetApi="31">
 
-        <!-- 👇 Activity khởi chạy -->
+        <!-- Activity khởi chạy -->
         <activity
             android:name=".ui.SignInActivity"
             android:exported="true"
@@ -26,30 +30,23 @@
             </intent-filter>
         </activity>
 
-        <!-- 👇 Các activity còn lại -->
+        <!-- Các activity còn lại -->
         <activity android:name=".ui.SignUpActivity" />
-        <activity android:name=".ui.HomeActivity"/>
+        <activity android:name=".ui.HomeActivity" />
         <activity android:name=".ui.ProfileActivity" />
-        <activity android:name=".ui.ChapterActivity"/>
-        <activity android:name=".ui.ExamActivity"/>
-        <activity android:name=".ui.QuestionActivity"/>
-        <activity android:name=".ui.CreateQuestionActivity"/>
-        <activity android:name=".ui.SemesterActivity"/>
-        <activity android:name=".ui.GradeActivity"/>
-        <activity android:name=".ui.CreateSolutionActivity"/>
-        <activity android:name=".ui.SolutionActivity"/>
-        <activity android:name=".ui.CreateExamActivity"/>
+        <activity android:name=".ui.ChapterActivity" />
+        <activity android:name=".ui.ExamActivity" />
+        <activity android:name=".ui.QuestionActivity" />
+        <activity android:name=".ui.CreateQuestionActivity" />
+        <activity android:name=".ui.SemesterActivity" />
+        <activity android:name=".ui.GradeActivity" />
+        <activity android:name=".ui.CreateSolutionActivity" />
+        <activity android:name=".ui.SolutionActivity" />
+        <activity android:name=".ui.CreateExamActivity" />
         <activity android:name=".ui.LessonActivity" />
         <activity android:name=".ui.EditProfileActivity" />
 
-        <service
-            android:name=".ui.FirebaseService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
+        <!-- Service cho Firebase Messaging -->
         <service
             android:name=".firebase.MyFirebaseMessagingService"
             android:exported="false">
@@ -57,6 +54,9 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <!-- Xóa service .ui.FirebaseService vì có vẻ trùng lặp với MyFirebaseMessagingService -->
+        <!-- Nếu cần, hãy thêm lại với intent-filter phù hợp -->
 
     </application>
 
