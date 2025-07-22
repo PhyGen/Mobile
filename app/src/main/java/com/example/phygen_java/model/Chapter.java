@@ -6,12 +6,14 @@ public class Chapter {
     private int semesterId;
     private String createdAt;
     private String updatedAt;
-
+    private int userId;
+    // Getters và setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
+
     public int getSemesterId() { return semesterId; }
     public void setSemesterId(int semesterId) { this.semesterId = semesterId; }
 
@@ -20,6 +22,6 @@ public class Chapter {
 
     public String getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(String updatedAt) { this.updatedAt = updatedAt; }
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId;}
 }
-
-

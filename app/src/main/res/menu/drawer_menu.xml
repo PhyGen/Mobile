@@ -1,9 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/nav_create" android:title="Tạo đề thi" />
+    <item android:id="@+id/nav_create_exam" android:title="Tạo đề thi" />
+    <item android:id="@+id/nav_create_question" android:title="Tạo câu hỏi" />
     <item android:id="@+id/nav_my_exam" android:title="Đề thi của tôi" />
     <item android:id="@+id/nav_recent" android:title="Gần đây" />
-    <item android:id="@+id/nav_shared" android:title="Đã chia sẻ" />
-    <item android:id="@+id/nav_ai" android:title="AI tạo đề" />
-    <item android:id="@+id/nav_trash" android:title="Thùng rác" />
+    <item android:id="@+id/nav_chapter" android:title="Xem chương" />
+    <item android:id="@+id/nav_exam_list" android:title="Xem đề thi" />
+    <item android:id="@+id/nav_lesson" android:title="Xem bài học" />
+    <item android:id="@+id/nav_question" android:title="Xem câu hỏi" />
+    <item android:id="@+id/nav_solution" android:title="Xem lời giải" />
+    <item android:id="@+id/nav_semester" android:title="Xem học kỳ" />
+    <item android:id="@+id/nav_grade" android:title="Xem khối lớp" />
+    <item android:id="@+id/nav_profile" android:title="Xem hồ sơ" />
+
 </menu>

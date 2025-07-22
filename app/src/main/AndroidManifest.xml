@@ -17,7 +17,7 @@
 
         <!-- 👇 Activity khởi chạy -->
         <activity
-            android:name=".ui.SignUpActivity"
+            android:name=".ui.SignInActivity"
             android:exported="true"
             android:theme="@style/Theme.PhyGen_Java">
             <intent-filter>
@@ -27,8 +27,8 @@
         </activity>
 
         <!-- 👇 Các activity còn lại -->
-        <activity android:name=".ui.SignInActivity" />
-        <activity android:name=".ui.HomeActivity" />
+        <activity android:name=".ui.SignUpActivity" />
+        <activity android:name=".ui.HomeActivity"/>
         <activity android:name=".ui.ProfileActivity" />
         <activity android:name=".ui.ChapterActivity"/>
         <activity android:name=".ui.ExamActivity"/>
@@ -38,6 +38,9 @@
         <activity android:name=".ui.GradeActivity"/>
         <activity android:name=".ui.CreateSolutionActivity"/>
         <activity android:name=".ui.SolutionActivity"/>
+        <activity android:name=".ui.CreateExamActivity"/>
+        <activity android:name=".ui.LessonActivity" />
+        <activity android:name=".ui.EditProfileActivity" />
 
         <service
             android:name=".ui.FirebaseService"

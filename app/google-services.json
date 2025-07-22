@@ -1,79 +1,26 @@
 {
   "project_info": {
-    "project_number": "1077325853840",
-    "project_id": "phygen1",
-    "storage_bucket": "phygen1.firebasestorage.app"
+    "project_number": "337621736516",
+    "project_id": "phygenjava-34e28",
+    "storage_bucket": "phygenjava-34e28.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1077325853840:android:176a73d95c9fa70c4c1415",
+        "mobilesdk_app_id": "1:337621736516:android:6d4dbbd4d22983f080f011",
         "android_client_info": {
           "package_name": "com.example.phygen_java"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "1077325853840-h2sl816cl6ctkt8g3e42ggnfvq6ecsuo.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC4AVzfXKQwarOEHkIVfwL-TTWtwu7xjWg"
+          "current_key": "AIzaSyDuFvSmAJOqDEjfcTPqTSfa7qSeg76Ws_c"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1077325853840-h2sl816cl6ctkt8g3e42ggnfvq6ecsuo.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "1077325853840-5idnoiut9pptjuv2pieoqf4djt5889fj.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.phygenMobile"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1077325853840:android:1abbccf7781c10184c1415",
-        "android_client_info": {
-          "package_name": "com.example.phygen_mobile"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1077325853840-h2sl816cl6ctkt8g3e42ggnfvq6ecsuo.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC4AVzfXKQwarOEHkIVfwL-TTWtwu7xjWg"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1077325853840-h2sl816cl6ctkt8g3e42ggnfvq6ecsuo.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "1077325853840-5idnoiut9pptjuv2pieoqf4djt5889fj.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.phygenMobile"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

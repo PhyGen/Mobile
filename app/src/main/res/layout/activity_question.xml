@@ -1,13 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="16dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
+    <!-- ProgressBar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- RecyclerView để hiển thị danh sách câu hỏi -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerQuestions"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btnCreateQuestion"
+        android:layout_marginTop="8dp"
+        android:padding="8dp" />
+
+
+    <!-- Button Xóa Câu Hỏi (nếu cần xóa từ danh sách, có thể thêm logic chọn câu hỏi) -->
+    <Button
+        android:id="@+id/btnDeleteQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="8dp"
+        android:text="Xóa Câu Hỏi" />
+
+    <!-- Button Tạo Câu Hỏi -->
+    <Button
+        android:id="@+id/btnCreateQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:text="Tạo Câu Hỏi" />
+</RelativeLayout>

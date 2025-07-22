@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#FCEEFF">
+
+    <!-- Danh sách bài học -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerLessons"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/white"/>
+
+    <!-- Tên bài học -->
+    <EditText
+        android:id="@+id/edtLessonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên bài học" />
+
+    <!-- Chapter ID -->
+    <EditText
+        android:id="@+id/edtChapterId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Chapter ID"
+        android:inputType="number" />
+
+    <!-- Nhóm 3 nút chức năng -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/btnUpdateLesson"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Cập nhật"
+            android:backgroundTint="#6A1B9A"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="4dp"/>
+
+        <Button
+            android:id="@+id/btnCreateLesson"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Tạo bài học"
+            android:backgroundTint="#7B1FA2"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="4dp"/>
+
+        <Button
+            android:id="@+id/btnDeleteLesson"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Xoá"
+            android:backgroundTint="#8E24AA"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>

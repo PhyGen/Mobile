@@ -67,8 +67,16 @@
             android:textColor="@android:color/white"
             android:backgroundTint="#4A3FF7"
             app:cornerRadius="24dp"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="16dp" />
 
+        <TextView
+            android:id="@+id/forgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password?"
+            android:textColor="#0077B6"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp" />
 
         <TextView
             android:id="@+id/goToSignUp"
@@ -77,6 +85,6 @@
             android:text="Don't have an account? Sign up"
             android:textColor="#0077B6"
             android:textSize="14sp"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="16dp" />
     </LinearLayout>
 </ScrollView>

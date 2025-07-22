@@ -60,7 +60,7 @@ public class RecentExamActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         emptyText.setVisibility(View.GONE);
 
-        ApiService apiService = RetrofitClient.getInstance();
+        ApiService apiService = RetrofitClient.getInstance(RecentExamActivity.this);
         apiService.getRecentExams().enqueue(new Callback<List<Exam>>() {
             @Override
             public void onResponse(Call<List<Exam>> call, Response<List<Exam>> response) {

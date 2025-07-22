@@ -26,7 +26,7 @@ public class SolutionActivity extends AppCompatActivity {
         recyclerSolutions = findViewById(R.id.recyclerSolutions);
         recyclerSolutions.setLayoutManager(new LinearLayoutManager(this));
 
-        ApiService apiService = RetrofitClient.getInstance();
+        ApiService apiService = RetrofitClient.getInstance(SolutionActivity.this);
         apiService.getSolutions().enqueue(new Callback<List<Solution>>() {
             @Override
             public void onResponse(Call<List<Solution>> call, Response<List<Solution>> response) {

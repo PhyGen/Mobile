@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.phygen_java.R;
 import com.example.phygen_java.model.GenericResponse;
 import com.example.phygen_java.model.RegisterRequest;
+import com.example.phygen_java.network.ApiService;
 import com.example.phygen_java.network.RetrofitClient;
 
 import java.io.IOException;
@@ -28,6 +29,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        // Ánh xạ các view
         nameInput = findViewById(R.id.inputName);
         emailInput = findViewById(R.id.inputEmail);
         passInput = findViewById(R.id.inputPassword);
@@ -36,16 +38,19 @@ public class SignUpActivity extends AppCompatActivity {
         googleBtn = findViewById(R.id.btnGoogle);
         goToSignIn = findViewById(R.id.goToSignIn);
 
+        // Sự kiện đăng ký
         signUpBtn.setOnClickListener(v -> handleSignUp());
 
-        googleBtn.setOnClickListener(v ->
-                Toast.makeText(this, "Google Sign-Up chưa hỗ trợ", Toast.LENGTH_SHORT).show()
-        );
-
+        // Sự kiện đăng nhập
         goToSignIn.setOnClickListener(v -> {
             Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
             startActivity(intent);
         });
+
+        // Google chưa hỗ trợ
+        googleBtn.setOnClickListener(v ->
+                Toast.makeText(this, "Google Sign-Up chưa hỗ trợ", Toast.LENGTH_SHORT).show()
+        );
     }
 
     private void handleSignUp() {
@@ -54,6 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
         String password = passInput.getText().toString();
         String confirmPassword = confirmPassInput.getText().toString();
 
+        // Kiểm tra hợp lệ đầu vào
         if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             showToast("Vui lòng điền đầy đủ thông tin");
             return;
@@ -71,7 +77,8 @@ public class SignUpActivity extends AppCompatActivity {
 
         RegisterRequest registerRequest = new RegisterRequest(email, password, name);
 
-        RetrofitClient.getInstance().register(registerRequest).enqueue(new Callback<GenericResponse>() {
+        ApiService apiService = RetrofitClient.getInstance(SignUpActivity.this);
+        apiService.register(registerRequest).enqueue(new Callback<GenericResponse>() {
             @Override
             public void onResponse(Call<GenericResponse> call, Response<GenericResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -81,17 +88,18 @@ public class SignUpActivity extends AppCompatActivity {
                 } else {
                     showToast("Đăng ký thất bại: " + response.code());
                     try {
-                        Log.e("SIGNUP_FAIL_BODY", response.errorBody().string());
+                        if (response.errorBody() != null) {
+                            Log.e("SIGNUP_ERROR", response.errorBody().string());
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             }
 
-
             @Override
             public void onFailure(Call<GenericResponse> call, Throwable t) {
-                showToast("Lỗi kết nối đến máy chủ");
+                showToast("Lỗi kết nối đến máy chủ: " + t.getMessage());
             }
         });
     }

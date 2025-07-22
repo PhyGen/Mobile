@@ -1,91 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnCreateExam"
+    <!-- Layout chính -->
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tạo đề thi"
-        android:backgroundTint="#4A3FF7"
-        app:cornerRadius="24dp"/>
+        android:layout_height="match_parent">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnMyExam"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Đề thi của tôi"
-        android:backgroundTint="#4A3FF7"
-        app:cornerRadius="24dp"/>
+        <!-- Toolbar -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#4A3FF7"
+            android:titleTextColor="@android:color/white"
+            android:theme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnRecent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Gần đây"
-        android:backgroundTint="#4A3FF7"
-        app:cornerRadius="24dp"/>
+        <!-- Nội dung màn hình chính -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnViewChapters"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Xem chương"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="#4A3FF7"
-        app:cornerRadius="24dp"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnViewProfile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Xem hồ sơ"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="#4A3FF7"
-        app:cornerRadius="24dp"/>
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnViewExams"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Xem đề thi"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="#4A3FF7"
-        app:cornerRadius="24dp"/>
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnViewQuestions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Xem câu hỏi"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="#4A3FF7"
-        app:cornerRadius="24dp"/>
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnViewSemesters"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Xem học kỳ"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="#4A3FF7"
-        app:cornerRadius="24dp" />
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnViewGrades"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Xem khối lớp"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="#4A3FF7"
-        app:cornerRadius="24dp" />
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnViewSolutions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Xem lời giải"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="#4A3FF7"
-        app:cornerRadius="24dp"/>
+                <!-- Welcome Text -->
+                <TextView
+                    android:id="@+id/tvWelcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Welcome to PhyGen"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="#4A3FF7"
+                    android:layout_marginBottom="16dp" />
 
-</LinearLayout>
+                <!-- Search -->
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Search"
+                    android:padding="12dp"
+                    android:background="@drawable/search_background"
+                    android:drawableStart="@android:drawable/ic_menu_search"
+                    android:drawablePadding="8dp"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Filter buttons (scrollable row) -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/PhyGenButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="Type"
+                            android:textSize="12sp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/PhyGenButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="Person"
+                            android:textSize="12sp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/PhyGenButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="Modified"
+                            android:textSize="12sp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/PhyGenButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="Location"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <!-- Suggested content sẽ thêm sau -->
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <!-- Navigation Drawer -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/drawer_menu"
+        app:headerLayout="@layout/nav_header" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

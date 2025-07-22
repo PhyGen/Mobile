@@ -63,4 +63,12 @@ dependencies {
 
     // SwipeRefreshLayout
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
+    // Google Sign-In
+    implementation("com.google.firebase:firebase-auth-ktx:22.3.0")
+    implementation ("com.google.android.gms:play-services-auth:21.0.0")
+
+    //Giải mã JSON
+    implementation ("org.json:json:20231013")
 }
+apply(plugin = "com.google.gms.google-services")

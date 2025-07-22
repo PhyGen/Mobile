@@ -31,8 +31,9 @@ public class ExamActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerExams);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ApiService api = RetrofitClient.getInstance();
-        api.getAllExams().enqueue(new Callback<List<Exam>>() {
+        ApiService apiService = RetrofitClient.getInstance(ExamActivity.this);
+
+        apiService.getAllExams().enqueue(new Callback<List<Exam>>() {
             @Override
             public void onResponse(Call<List<Exam>> call, Response<List<Exam>> response) {
                 if (response.isSuccessful() && response.body() != null) {

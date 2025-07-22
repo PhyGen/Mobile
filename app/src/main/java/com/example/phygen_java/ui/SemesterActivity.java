@@ -27,8 +27,8 @@ public class SemesterActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerSemesters);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ApiService api = RetrofitClient.getInstance();
-        api.getAllSemesters().enqueue(new Callback<List<Semester>>() {
+        ApiService apiService = RetrofitClient.getInstance(SemesterActivity.this);
+        apiService.getAllSemesters().enqueue(new Callback<List<Semester>>() {
             @Override
             public void onResponse(Call<List<Semester>> call, Response<List<Semester>> response) {
                 if (response.isSuccessful() && response.body() != null) {

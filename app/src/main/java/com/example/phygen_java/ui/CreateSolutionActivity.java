@@ -40,7 +40,8 @@ public class CreateSolutionActivity extends AppCompatActivity {
 
             Solution solution = new Solution(questionId, content, explanation, createdByUserId);
 
-            ApiService apiService = RetrofitClient.getInstance();
+            ApiService apiService = RetrofitClient.getInstance(CreateSolutionActivity.this);
+
             apiService.createSolution(solution).enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {

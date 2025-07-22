@@ -1,6 +1,5 @@
 package com.example.phygen_java.ui;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +11,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.phygen_java.R;
 import com.example.phygen_java.model.Chapter;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ChapterAdapter extends RecyclerView.Adapter<ChapterAdapter.ChapterViewHolder> {
-    private List<Chapter> chapterList;
 
-    public ChapterAdapter(List<Chapter> chapters) {
-        this.chapterList = chapters;
-        Log.d("ChapterAdapter", "Adapter được tạo với " + chapters.size() + " chương.");
+    private final List<Chapter> chapterList;
+    private final OnChapterClickListener listener;
+
+    public interface OnChapterClickListener {
+        void onChapterClick(Chapter chapter);
+    }
+
+    public ChapterAdapter(List<Chapter> chapterList, OnChapterClickListener listener) {
+        this.chapterList = chapterList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -33,11 +40,14 @@ public class ChapterAdapter extends RecyclerView.Adapter<ChapterAdapter.ChapterV
     @Override
     public void onBindViewHolder(@NonNull ChapterViewHolder holder, int position) {
         Chapter chapter = chapterList.get(position);
-        holder.tvChapterName.setText(chapter.getName());
+        holder.tvChapterName.setText("" + chapter.getName());
         holder.tvSemester.setText("Học kỳ: " + chapter.getSemesterId());
 
-        // 🔍 Log để kiểm tra dữ liệu từng item
-        Log.d("ChapterAdapter", "Đang bind chapter: " + chapter.getName());
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onChapterClick(chapter);
+            }
+        });
     }
 
     @Override
@@ -45,7 +55,7 @@ public class ChapterAdapter extends RecyclerView.Adapter<ChapterAdapter.ChapterV
         return chapterList.size();
     }
 
-    static class ChapterViewHolder extends RecyclerView.ViewHolder {
+    public static class ChapterViewHolder extends RecyclerView.ViewHolder {
         TextView tvChapterName, tvSemester;
 
         public ChapterViewHolder(@NonNull View itemView) {

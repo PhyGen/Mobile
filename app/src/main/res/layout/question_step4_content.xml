@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="Nhập nội dung câu hỏi"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/inputContent"
+        android:hint="Ví dụ: Công thức tính gia tốc?"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minLines="3"
+        android:gravity="top"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/inputSource"
+        android:hint="Nguồn câu hỏi (tùy chọn)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnNextContent"
+        style="@style/PhyGenButtonStyle"
+        android:text="Tiếp tục" />
+</LinearLayout>

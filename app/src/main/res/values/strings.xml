@@ -9,4 +9,5 @@
     <string name="google_signin_not_supported">Google Sign-In not supported</string>
     <string name="navigation_drawer_open">Open menu</string>
     <string name="navigation_drawer_close">Close menu</string>
+    <string name="default_web_client_id">PASTE_WEB_CLIENT_ID_HERE</string>
 </resources>

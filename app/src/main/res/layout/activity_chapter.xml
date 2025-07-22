@@ -1,12 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#FCEEFF">
 
+    <!-- Danh sách chương -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerChapters"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/white"/>
+
+    <!-- Tên chương -->
+    <EditText
+        android:id="@+id/edtChapterName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên chương"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Semester ID -->
+    <EditText
+        android:id="@+id/edtSemesterId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Học kỳ"
+        android:inputType="number"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Nhóm 3 nút chức năng -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/btnUpdateChapter"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Cập nhật"
+            android:backgroundTint="#6A1B9A"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="4dp"/>
+
+        <Button
+            android:id="@+id/btnCreateChapter"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Tạo chương"
+            android:backgroundTint="#7B1FA2"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="4dp"/>
+
+        <Button
+            android:id="@+id/btnDeleteChapter"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Xóa"
+            android:backgroundTint="#8E24AA"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"/>
 </LinearLayout>

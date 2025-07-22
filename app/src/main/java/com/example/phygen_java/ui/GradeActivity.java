@@ -29,7 +29,7 @@ public class GradeActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerGrades);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ApiService apiService = RetrofitClient.getInstance();
+        ApiService apiService = RetrofitClient.getInstance(GradeActivity.this);
         apiService.getGrades().enqueue(new Callback<List<Grade>>() {
             @Override
             public void onResponse(Call<List<Grade>> call, Response<List<Grade>> response) {

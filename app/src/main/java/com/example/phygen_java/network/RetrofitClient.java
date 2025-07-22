@@ -1,19 +1,29 @@
 package com.example.phygen_java.network;
 
+import android.content.Context;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private static final String BASE_URL = "https://phygen.ticketresell-swp.click/api/";
-    private static Retrofit retrofit = null;
 
-    public static ApiService getInstance() {
-        if (retrofit == null) {
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+    private static ApiService instance;
+
+    public static ApiService getInstance(Context context) {
+        if (instance == null) {
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .addInterceptor(new AuthInterceptor(context))
+                    .build();
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("https://phygen.ticketresell-swp.click/")
+                    .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
+
+            instance = retrofit.create(ApiService.class);
         }
-        return retrofit.create(ApiService.class);
+        return instance;
     }
 }

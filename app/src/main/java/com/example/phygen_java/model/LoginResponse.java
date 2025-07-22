@@ -1,28 +1,26 @@
 package com.example.phygen_java.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class LoginResponse {
-    private boolean success;
+    @SerializedName("token")
     private String token;
-    private User user;
-
-    public LoginResponse() {
-
-    }
-    public LoginResponse(boolean success, String token, User user) {
-        this.success = success;
-        this.token = token;
-        this.user = user;
-    }
-
-    public boolean isSuccess() {
-        return success;
-    }
+    @SerializedName("userId")
+    private int userId;
 
     public String getToken() {
         return token;
     }
 
-    public User getUser() {
-        return user;
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
