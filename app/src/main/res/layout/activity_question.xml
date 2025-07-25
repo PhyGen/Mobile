@@ -1,45 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
-
-    <!-- ProgressBar -->
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    android:padding="16dp"
+    android:background="#FCEEFF">
 
     <!-- RecyclerView để hiển thị danh sách câu hỏi -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerQuestions"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/btnCreateQuestion"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/white"/>
+
+    <!-- Tiêu đề câu hỏi -->
+    <EditText
+        android:id="@+id/edtQuestionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tiêu đề câu hỏi"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Nội dung câu hỏi -->
+    <EditText
+        android:id="@+id/edtQuestionContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nội dung câu hỏi"
+        android:inputType="textMultiLine"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Nhóm 3 nút chức năng -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
         android:layout_marginTop="8dp"
-        android:padding="8dp" />
+        android:weightSum="3">
 
+<!--        <Button-->
+<!--            android:id="@+id/btnUpdateQuestion"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Cập nhật"-->
+<!--            android:backgroundTint="#6A1B9A"-->
+<!--            android:textColor="@android:color/white"-->
+<!--            android:layout_marginEnd="4dp"/>-->
 
-    <!-- Button Xóa Câu Hỏi (nếu cần xóa từ danh sách, có thể thêm logic chọn câu hỏi) -->
-    <Button
-        android:id="@+id/btnDeleteQuestion"
+        <Button
+            android:id="@+id/btnCreateQuestion"
+            style="@style/PhyGenButtonStyle"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:text="Tạo câu hỏi"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btnDeleteQuestion"
+            style="@style/PhyGenButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Xóa"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <!-- ProgressBar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="8dp"
-        android:text="Xóa Câu Hỏi" />
-
-    <!-- Button Tạo Câu Hỏi -->
-    <Button
-        android:id="@+id/btnCreateQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:text="Tạo Câu Hỏi" />
-</RelativeLayout>
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>

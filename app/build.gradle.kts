@@ -1,6 +1,6 @@
 plugins {
     id("com.android.application") version "8.4.0"
-    //id("com.google.gms.google-services")
+    id("com.google.gms.google-services") version "4.4.3" apply false
     id("org.jetbrains.kotlin.android") version "1.9.23"
 }
 
@@ -9,11 +9,11 @@ kotlin {
 }
 
 android {
-    namespace = "com.example.phygen_java_1"
+    namespace = "com.example.phygen_java_2"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.phygen_java_1"
+        applicationId = "com.example.phygen_java_2"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -43,11 +43,14 @@ android {
 }
 
 dependencies {
-    implementation("com.google.android.gms:play-services-auth:21.0.0")
+    // Google Sign-In
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
 
-//    // Firebase Messaging
-//    implementation(platform("com.google.firebase:firebase-bom:33.2.0"))
-//    implementation("com.google.firebase:firebase-messaging")
+    // Firebase Messaging
+    implementation(platform("com.google.firebase:firebase-bom:34.0.0"))
+    implementation("com.google.firebase:firebase-messaging")
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth")
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -69,6 +72,15 @@ dependencies {
     // JSON
     implementation("org.json:json:20231013")
     testImplementation("junit:junit:4.13.2")
+
+    // AndroidX Test - Instrumentation Testing
+    androidTestImplementation ("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation ("androidx.test:runner:1.5.2")
+    androidTestImplementation ("androidx.test:rules:1.5.0")
+
+// JUnit for unit test
+    testImplementation ("junit:junit:4.13.2")
+
 }
 
-//apply(plugin = "com.google.gms.google-services")
+apply(plugin = "com.google.gms.google-services")

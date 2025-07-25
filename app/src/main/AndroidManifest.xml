@@ -42,9 +42,9 @@
         <activity android:name=".ui.GradeActivity" />
         <activity android:name=".ui.CreateSolutionActivity" />
         <activity android:name=".ui.SolutionActivity" />
-        <activity android:name=".ui.CreateExamActivity" />
         <activity android:name=".ui.LessonActivity" />
         <activity android:name=".ui.EditProfileActivity" />
+        <activity android:name=".ui.HistoryActivity"/>
 
         <!-- Service cho Firebase Messaging -->
         <service
@@ -54,9 +54,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
-        <!-- Xóa service .ui.FirebaseService vì có vẻ trùng lặp với MyFirebaseMessagingService -->
-        <!-- Nếu cần, hãy thêm lại với intent-filter phù hợp -->
 
     </application>
 
