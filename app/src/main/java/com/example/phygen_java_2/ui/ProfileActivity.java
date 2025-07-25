@@ -25,7 +25,7 @@ import retrofit2.Response;
 public class ProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "ProfileActivity";
-    private TextView tvName, tvEmail, tvUserId;
+    private TextView tvName, tvEmail, tvUserId, tvRoleId;
     private MaterialButton btnLogout, btnRefresh, btnEditProfile;
     private ProgressBar progressBar;
 
@@ -37,6 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
         tvName = findViewById(R.id.tvName);
         tvEmail = findViewById(R.id.tvEmail);
         tvUserId = findViewById(R.id.tvUserId);
+        tvRoleId = findViewById(R.id.tvRoleId);
         btnLogout = findViewById(R.id.btnLogout);
         btnRefresh = findViewById(R.id.btnRefresh);
         btnEditProfile = findViewById(R.id.btnEditProfile);
@@ -71,11 +72,13 @@ public class ProfileActivity extends AppCompatActivity {
             tvName.setText("Tên: " + (user.getName() != null ? user.getName() : "N/A"));
             tvEmail.setText("Email: " + (user.getEmail() != null ? user.getEmail() : "N/A"));
             tvUserId.setText("ID: " + user.getId());
+            tvRoleId.setText("Role ID: " + user.getRoleId());
             Log.d(TAG, "Displayed ID: " + user.getId());
         } else {
             tvName.setText("Tên: Không có dữ liệu");
             tvEmail.setText("Email: Không có dữ liệu");
             tvUserId.setText("ID: Không có dữ liệu");
+            tvRoleId.setText("Role ID: Không có dữ liệu");
             Log.w(TAG, "No user data to display");
         }
     }

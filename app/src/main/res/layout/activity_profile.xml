@@ -30,6 +30,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <TextView
+        android:id="@+id/tvRoleId"
+        android:text="ID: "
+        android:textSize="18sp"
+        android:layout_marginBottom="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"

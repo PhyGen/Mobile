@@ -107,9 +107,26 @@ public class SharedPrefManager {
     }
 
     public int getUserId() {
-        return prefs.getInt("user_id", -1);
+        User user = getUser();
+        if (user != null && user.getId() > 0) {
+            Log.d(TAG, "UserId retrieved from User: " + user.getId());
+            return user.getId();
+        }
+        int userId = prefs.getInt("user_id", -1);
+        Log.d(TAG, "UserId retrieved from prefs: " + userId);
+        return userId;
     }
 
+    public int getRoleId() {
+        User user = getUser();
+        if (user != null) {
+            int roleId = user.getRoleId();
+            Log.d(TAG, "RoleId from User: " + roleId + ", User JSON: " + gson.toJson(user));
+            return roleId;
+        }
+        Log.w(TAG, "No user found, returning 0");
+        return 0;
+    }
     public boolean saveUserId(int userId) {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("user_id", userId);
@@ -169,5 +186,9 @@ public class SharedPrefManager {
     public void clear() {
         prefs.edit().clear().commit();
         Log.d(TAG, "SharedPreferences cleared");
+    }
+
+    public boolean isInitialized() {
+        return prefs != null;
     }
 }

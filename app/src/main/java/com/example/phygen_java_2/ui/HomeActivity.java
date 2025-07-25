@@ -2,6 +2,9 @@ package com.example.phygen_java_2.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -11,7 +14,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.phygen_java_2.R;
+import com.example.phygen_java_2.util.SharedPrefManager;
 import com.google.android.material.navigation.NavigationView;
+import com.example.phygen_java_2.model.LoginResponse;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -37,6 +42,33 @@ public class HomeActivity extends AppCompatActivity {
         );
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+        int roleId = SharedPrefManager.getInstance(this).getRoleId();
+        Log.d("HomeActivity", "Retrieved roleId: " + roleId);
+
+        Menu menu = navigationView.getMenu();
+        if (roleId == 1) {
+            // USER: chỉ show nav_profile & nav_history
+            for (int i = 0; i < menu.size(); i++) {
+                MenuItem item = menu.getItem(i);
+                if (item.getItemId() != R.id.nav_profile && item.getItemId() != R.id.nav_history) {
+                    item.setVisible(false);
+                }
+            }
+        } else if (roleId == 2 || roleId == 3) {
+            // ADMIN/MODERATOR: show hết trừ create_exam
+            MenuItem createExamItem = menu.findItem(R.id.nav_create_exam);
+            if (createExamItem != null) {
+                createExamItem.setVisible(false);
+            }
+        } else {
+            // roleId không hợp lệ
+            Log.w("HomeActivity", "Invalid roleId: " + roleId + ", hiding all items");
+            for (int i = 0; i < menu.size(); i++) {
+                menu.getItem(i).setVisible(false);
+            }
+        }
+
+
 
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
@@ -61,7 +93,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SolutionActivity.class));
             } else if (id == R.id.nav_lesson) {
                 startActivity(new Intent(this, LessonActivity.class));
-            } else if (id == R.id.nav_history) { // Thêm điều hướng tới HistoryActivity
+            } else if (id == R.id.nav_history) {
                 startActivity(new Intent(this, HistoryActivity.class));
             }
 

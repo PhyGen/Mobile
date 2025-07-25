@@ -53,14 +53,14 @@ public class SignInActivity extends AppCompatActivity {
                     Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(result.getData());
                     try {
                         GoogleSignInAccount account = task.getResult(ApiException.class);
-                        Log.d(TAG, "Google Sign-In successful, ID Token: " + account.getIdToken());
+                        Log.d(TAG, "Google Sign-In successful, ID Token: " + (account.getIdToken() != null ? account.getIdToken().substring(0, 20) + "..." : "null"));
                         firebaseAuthWithGoogle(account.getIdToken());
                     } catch (ApiException e) {
                         Log.e(TAG, "Google Sign-In failed", e);
                         Toast.makeText(this, "Đăng nhập Google thất bại: " + e.getStatusCode(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Log.w(TAG, "Google Sign-In canceled");
+                    Log.w(TAG, "Google Sign-In canceled or data null, resultCode: " + result.getResultCode());
                     Toast.makeText(this, "Đăng nhập Google bị hủy", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -70,6 +70,7 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         if (SharedPrefManager.getInstance(this).getToken() != null) {
+            Log.d(TAG, "Existing token found, redirecting to HomeActivity");
             startActivity(new Intent(this, HomeActivity.class));
             finish();
             return;
@@ -141,7 +142,7 @@ public class SignInActivity extends AppCompatActivity {
     private void sendIdTokenToBackend(String idToken) {
         GoogleLoginRequest request = new GoogleLoginRequest(idToken);
         ApiService apiService = RetrofitClient.getInstance(this);
-        Log.d(TAG, "Sending request to /api/login/google-login with idToken: " + idToken);
+        Log.d(TAG, "Sending request to /api/login/google-login with idToken: " + (idToken != null ? idToken.substring(0, 20) + "..." : "null"));
 
         apiService.googleLogin(request).enqueue(new Callback<LoginResponse>() {
             @Override
@@ -150,12 +151,12 @@ public class SignInActivity extends AppCompatActivity {
                     LoginResponse loginResponse = response.body();
                     String token = loginResponse.getToken();
                     int userId = loginResponse.getUserId();
-                    Log.d(TAG, "Received userId from LoginResponse: " + userId); // Debug userId
+                    Log.d(TAG, "Received userId from LoginResponse: " + userId);
                     String role = loginResponse.getRole(); // Có thể null
                     if (role == null) {
                         fetchUserProfileAndRole(token, userId);
                     } else {
-                        saveLoginData(token, userId, role);
+                        saveLoginData(token, userId, role, null);
                     }
                 } else {
                     int statusCode = response.code();
@@ -193,12 +194,12 @@ public class SignInActivity extends AppCompatActivity {
                     LoginResponse loginResponse = response.body();
                     String token = loginResponse.getToken();
                     int userId = loginResponse.getUserId();
-                    Log.d(TAG, "Received userId from LoginResponse: " + userId); // Debug userId
+                    Log.d(TAG, "Received userId from LoginResponse: " + userId);
                     String role = loginResponse.getRole(); // Có thể null
                     if (role == null) {
                         fetchUserProfileAndRole(token, userId);
                     } else {
-                        saveLoginData(token, userId, role);
+                        saveLoginData(token, userId, role, null);
                     }
                 } else {
                     Toast.makeText(SignInActivity.this, "Sai tài khoản hoặc mật khẩu", Toast.LENGTH_SHORT).show();
@@ -214,53 +215,60 @@ public class SignInActivity extends AppCompatActivity {
 
     private void fetchUserProfileAndRole(String token, int userId) {
         ApiService apiService = RetrofitClient.getInstance(this);
-        Log.d(TAG, "Fetching user profile and role with token: " + token.substring(0, Math.min(token.length(), 20)) + "... , userId: " + userId);
+        Log.d(TAG, "Fetching user profile and role with token: " + (token != null ? token.substring(0, Math.min(token.length(), 20)) + "..." : "null") + ", userId: " + userId);
         apiService.getUserById("Bearer " + token, userId).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     User user = response.body();
                     int apiUserId = user.getId();
-                    Log.d(TAG, "Received userId from User: " + apiUserId); // Debug userId từ User
-                    SharedPrefManager.getInstance(SignInActivity.this).saveUser(user);
-                    String role = mapRoleFromRoleId(user.getRoleId()); // Ánh xạ roleId sang role
-                    saveLoginData(token, apiUserId, role); // Sử dụng userId từ User
-                    Log.d(TAG, "User profile fetched: " + user.getEmail() + ", role: " + role);
+                    Log.d(TAG, "Received userId from User: " + apiUserId + ", roleId: " + user.getRoleId());
+                    SharedPrefManager.getInstance(SignInActivity.this).saveUser(user); // Lưu roleId qua User
+                    saveLoginData(token, apiUserId, null, user);
+                    Log.d(TAG, "User profile fetched: " + (user.getEmail() != null ? user.getEmail() : "null") + ", roleId: " + user.getRoleId());
                 } else {
                     Log.e(TAG, "Failed to fetch user profile: HTTP " + response.code() + " - " + response.message());
-                    saveLoginData(token, userId, "user"); // Fallback nếu không lấy được role
+                    saveLoginData(token, userId, "user", null); // Fallback với role mặc định
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Log.e(TAG, "Fetch user profile error: " + t.getMessage(), t);
-                saveLoginData(token, userId, "user"); // Fallback nếu lỗi mạng
+                saveLoginData(token, userId, "user", null); // Fallback với role mặc định
             }
         });
     }
 
-    private void saveLoginData(String token, int userId, String role) {
-        boolean tokenSaved = SharedPrefManager.getInstance(SignInActivity.this).saveToken(token);
-        boolean userIdSaved = SharedPrefManager.getInstance(SignInActivity.this).saveUserId(userId);
-        boolean roleSaved = SharedPrefManager.getInstance(SignInActivity.this).saveRole(role);
-        if (tokenSaved && userIdSaved && roleSaved) {
-            Log.d(TAG, "Login data saved successfully, token: " + token.substring(0, Math.min(token.length(), 20)) + "... , userId: " + userId + ", role: " + role);
+    private void saveLoginData(String token, int userId, String role, User user) {
+        SharedPrefManager sharedPrefManager = SharedPrefManager.getInstance(this);
+        if (sharedPrefManager == null) {
+            Log.e(TAG, "SharedPrefManager is null, cannot save login data");
+            Toast.makeText(this, "Lỗi lưu dữ liệu, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        boolean success = false;
+        if (user != null) {
+            success = sharedPrefManager.saveUser(user); // Lưu roleId qua User
+            Log.d(TAG, "Saved User: userId=" + user.getId() + ", roleId=" + user.getRoleId());
+        } else {
+            success = sharedPrefManager.saveToken(token) && sharedPrefManager.saveUserId(userId);
+            if (role != null) {
+                sharedPrefManager.saveRole(role); // Lưu role nếu có
+                Log.d(TAG, "Saved role: " + role);
+            }
+            Log.d(TAG, "Saved token and userId: token=" + (token != null ? token.substring(0, 20) + "..." : "null") + ", userId=" + userId);
+        }
+        if (success) {
+            Log.d(TAG, "Login data saved successfully");
             Toast.makeText(SignInActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
         } else {
-            Log.e(TAG, "Failed to save login data - token: " + (tokenSaved ? "saved" : "failed") + ", userId: " + (userIdSaved ? "saved" : "failed") + ", role: " + (roleSaved ? "saved" : "failed"));
+            Log.e(TAG, "Failed to save login data, preventing navigation to HomeActivity");
             Toast.makeText(SignInActivity.this, "Đăng nhập thất bại, vui lòng thử lại", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private String mapRoleFromRoleId(int roleId) {
-        switch (roleId) {
-            case 1: return "admin";
-            case 2: return "user";
-            default: return "user"; // Giá trị mặc định
         }
     }
 }

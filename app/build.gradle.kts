@@ -80,6 +80,7 @@ dependencies {
 
 // JUnit for unit test
     testImplementation ("junit:junit:4.13.2")
+    implementation ("com.auth0.android:jwtdecode:2.0.1")
 
 }
 

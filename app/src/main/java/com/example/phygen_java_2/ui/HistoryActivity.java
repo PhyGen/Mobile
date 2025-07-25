@@ -49,7 +49,7 @@ public class HistoryActivity extends AppCompatActivity {
         Log.d(TAG, "UserId: " + currentUserId);
         Log.d(TAG, "Token: " + (token != null ? token.substring(0, 10) + "..." : "null"));
 
-        if (role == null || token == null || userId <= 0) { // Cập nhật điều kiện <= 0 thay vì == 0
+        if (role == null || token == null || userId < 0) { // Chỉ từ chối khi userId < 0
             Log.e(TAG, "Login check failed - role: " + (role != null ? role : "null") + ", token: " + (token != null ? "not null" : "null") + ", userId: " + userId);
             Toast.makeText(this, "Vui lòng đăng nhập lại!", Toast.LENGTH_SHORT).show();
             finish();
